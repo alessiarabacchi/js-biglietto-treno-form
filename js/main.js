@@ -29,31 +29,47 @@ printButton.addEventListener("click", function () {
 
   resultName.innerText = "Nome Passeggero" + ":" + username;
   resultKm.innerText = "Km Totali" + ":" + km;
-  resultAge.innerText = "Km Totali" + ":" + age;
+  resultAge.innerText = "Fascia d'età" + ":" + age;
 
-  const fullPrice = parseInt((kmInput * 0.21).toFixed(2));
-  console.log(fullPrice);
+  const priceKm = 0.21;
+  const priceBase = priceKm * km;
+
+  let discountPerc = 0;
+  if (age == "minorenne") {
+    discountPerc = 20;
+  } else if (age == "over65") {
+    discountPerc = 40;
+  }
+
+  const discountEur = (priceBase + discountPerc) / 100;
+
+  const priceFinal = priceBase - discountEur;
+  const priceFinalText = "€" + priceFinal.toFixed(2);
+
+  resultElement.innerText = priceFinalText;
+  // const fullPrice = parseInt((kmInput * 0.21).toFixed(2));
+  // console.log(fullPrice);
 
   // Va applicato uno sconto del 20% per i minorenni
-  const minPrice = parseInt((fullPrice - (fullPrice * 20) / 100).toFixed(2));
-  console.log(minPrice);
+  // const minPrice = parseInt((fullPrice - (fullPrice * 20) / 100).toFixed(2));
+  // console.log(minPrice);
 
-  // Va applicato uno sconto del 40% per gli over 65
-  const overPrice = parseInt((fullPrice - (fullPrice * 40) / 100).toFixed(2));
-  console.log(overPrice);
+  // // Va applicato uno sconto del 40% per gli over 65
+  // const overPrice = parseInt((fullPrice - (fullPrice * 40) / 100).toFixed(2));
+  // console.log(overPrice);
 
-  if (ageInput === "minorenne") {
-    resultElement.innerText =
-      "Il prezzo del tuo biglietto è" + minPrice + "euro";
-  }
+  // if (ageInput === "minorenne") {
+  //   resultElement.innerText =
+  //     "Il prezzo del tuo biglietto è" + minPrice + "euro";
+  // }
 
-  if (ageInput === "over65") {
-    resultElement.innerText =
-      "Il prezzo del tuo biglietto è" + overPrice + "euro";
-  }
+  // if (ageInput === "over65") {
+  //   resultElement.innerText =
+  //     "Il prezzo del tuo biglietto è" + overPrice + "euro";
+  // }
 
-  if (ageInput === "maggiorenne") {
-    resultElement.innerText =
-      "Il prezzo del tuo biglietto è" + fullPrice + "euro";
-  }
+  // if (ageInput === "maggiorenne") {
+  //   resultElement.innerText =
+  //     "Il prezzo del tuo biglietto è" + fullPrice + "euro";
+  // }
 });
