@@ -31,6 +31,17 @@ printButton.addEventListener("click", function () {
   resultKm.innerText = "Km Totali" + ":" + km;
   resultAge.innerText = "Km Totali" + ":" + age;
 
+  const fullPrice = parseInt((kmInput * 0.21).toFixed(2));
+  console.log(fullPrice);
+
+  // Va applicato uno sconto del 20% per i minorenni
+  const minPrice = parseInt((fullPrice - (fullPrice * 20) / 100).toFixed(2));
+  console.log(minPrice);
+
+  // Va applicato uno sconto del 40% per gli over 65
+  const overPrice = parseInt((fullPrice - (fullPrice * 40) / 100).toFixed(2));
+  console.log(overPrice);
+
   if (ageInput === "minorenne") {
     resultElement.innerText =
       "Il prezzo del tuo biglietto è" + minPrice + "euro";
